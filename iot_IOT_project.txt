@@ -1,0 +1,24 @@
+int input = 5;
+int green = 9;
+void setup() {
+  pinMode(input,INPUT);
+  pinMode(green,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  double intensity;
+  intensity = analogRead(input);
+  if(intensity >= 50)
+  {
+    digitalWrite(green,HIGH);
+  }
+  else
+  {
+    digitalWrite(green,LOW);
+  }
+  Serial.print("intensity:");
+  Serial.print(intensity);
+  Serial.print("\n");
+  delay(100);
+}
