@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<conio.h>
 #include<time.h>
 char start_stop='Y';
 typedef enum option {A=65,B,C,D} option;
@@ -45,17 +46,32 @@ int is_in_arr(int* arr,int element,int size){
     }
     return 0;
 }
-void review(mcq mcq_set[10])
+void review(mcq mcq_set[10],int *order_of_questions)
 {
     for (int i = 0; i < 10; i++)
     {
-        
+        system("cls");
+        if (mcq_set[order_of_questions[i]].answers[mcq_set[order_of_questions[i]].chosen_option-65]==mcq_set[order_of_questions[i]].answers[mcq_set[order_of_questions[i]].correct_option-65])
+        {
+            system("color 2");
+            printf("\t\t\t\tTHE ASNWER IS CORRECT!!!\n\n\n");
+        }
+        else
+        {
+            system("color 4");
+            printf("\t\t\t\tTHE ASNWER IS WRONG!!!\n\n\n");
+        }
+        printf("%s\n",mcq_set[order_of_questions[i]].question);
+        printf("chosen option:%c]%s\n",(char)mcq_set[order_of_questions[i]].chosen_option,mcq_set[order_of_questions[i]].answers[mcq_set[order_of_questions[i]].chosen_option-65]);
+        printf("correct option:%c]%s\n",(char)mcq_set[order_of_questions[i]].correct_option,mcq_set[order_of_questions[i]].answers[mcq_set[order_of_questions[i]].correct_option-65]);
+        printf("\n\n\t\tenter any key to continue...");
+        getch();
     }
 }
-void main(char start_stop){
+void main(){  
     system("cls");
     srand(time(0));
-    int correct_question_number[10]={0};
+    int correct_answers_number[10]={0};
     mcq mcq_set[10];
     for (int i = 0; i < 10; i++)
     {
@@ -124,10 +140,17 @@ void main(char start_stop){
     int remaining_question[]={0,1,2,3,4,5,6,7,8,9};
     int size=10;
     int i=1,score=0;
+    int asked_question_order[10];
     while (size!=0)
     {
         system("cls");
         int x=rand()%10;
+        if (!is_in_arr(remaining_question,x,size))
+        {
+            continue;
+        }
+        
+        asked_question_order[10-size] = x;
         printf("question %d:%s",i,mcq_set[x].question);
         printf("\noptions:\n");
         printf("\nA:%s\t\tB:%s\t\tC:%s\t\tD:%s\t\n",mcq_set[x].answers[0],mcq_set[x].answers[1],mcq_set[x].answers[2],mcq_set[x].answers[3]);
@@ -152,6 +175,7 @@ void main(char start_stop){
     char want_review;
     printf("\n\n\n\t\t\tYOUR SCORE IS %d\n\n\n",score);
     printf("DO YOU WANT TO REVIEW YOUR TEST:");
+    fflush(stdin);
     scanf("%c",&want_review);
-    if(want_review=='Y') review(mcq_set);
+    if(want_review=='Y') review(mcq_set,asked_question_order);
 }
