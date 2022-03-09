@@ -9,7 +9,7 @@ void setup() {
 void loop() {
   double intensity;
   intensity = analogRead(input);
-  if(intensity >= 50)
+  if(intensity >= 77)
   {
     digitalWrite(green,HIGH);
   }

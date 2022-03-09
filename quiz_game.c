@@ -68,7 +68,8 @@ void review(mcq mcq_set[10],int *order_of_questions)
         getch();
     }
 }
-void main(){  
+void main()
+{  
     system("cls");
     srand(time(0));
     int correct_answers_number[10]={0};
@@ -178,4 +179,4 @@ void main(){
     fflush(stdin);
     scanf("%c",&want_review);
     if(want_review=='Y') review(mcq_set,asked_question_order);
-}
+    }

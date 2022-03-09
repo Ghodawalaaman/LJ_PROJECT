@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<time.h>
-#include<windows.h>
+#include<stdlib.h>
 char words[2][20]={"hello","school"};
 void start_game()
 {
@@ -34,13 +34,13 @@ void start_game()
         fflush(stdin);
         scanf("%c",&c);
     }
-    if(c=='y') continue;
-    else return;
+    if(c!='y') return;
     for (int i = 0; i < strlen(words[0]); i++)
     {
         if (str[i]==words[0][i])
         {
             found_word[i]=1;
+            //printf("%d ",found_word[i]);
         }
     }
     printf("TRY AGAAIN!!!\n");

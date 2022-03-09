@@ -3,10 +3,10 @@ int echopin = 8;
 int red = 5;
 int yellow = 6;
 int green = 12;
-double tank_depth = 19;
+double tank_depth = 13.2;
 double thirty_percent = 0.3*tank_depth;
 double sixty_percent = 0.6*tank_depth;
-double ninty_percent = 0.9*tank_depth;
+double eigty_percent = 0.8*tank_depth;
 long duration;
 double distance;
 void setup() {
@@ -25,7 +25,12 @@ void loop() {
   duration = pulseIn(echopin,HIGH);
   distance = duration*0.034/2;
 
-  if(distance >= ninty_percent)
+//80-100 RED 
+//60-80 YELLOW
+//30-60 GREEN
+//0-30 NO LIGHT
+  
+  if(distance >= eigty_percent)
   {
     digitalWrite(red,HIGH);
     digitalWrite(green,LOW);
